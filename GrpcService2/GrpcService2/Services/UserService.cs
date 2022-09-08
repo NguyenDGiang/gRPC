@@ -26,7 +26,7 @@ namespace GrpcService2Services
                         {
                             Id = u.Id,
                             Address = u.Address,
-                            CreateDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.SpecifyKind(u.CreateDate, DateTimeKind.Utc)),
+                            CreateDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(u.CreateDate),
                             Delete = u.Delete,
                             Email = u.Email,
                             Name = u.Name,
@@ -52,7 +52,7 @@ namespace GrpcService2Services
             var response = new UserProto()
             {
                 Address = res.Entity.Address,
-                CreateDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.SpecifyKind(res.Entity.CreateDate, DateTimeKind.Utc)),
+                CreateDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(res.Entity.CreateDate),
                 Delete = res.Entity.Delete,
                 Email = res.Entity.Email,
                 Name = res.Entity.Name,
