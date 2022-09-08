@@ -1,0 +1,28 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "GrpcService.Protos";
+package users;
+service UserService {
+    rpc GetAll(Empty) returns(UserProtos);
+    rpc GetById(UserRowIdFilter) returns(UserProto );
+    rpc Post(UserProto ) returns(UserProto );
+    rpc Put(UserProto ) returns(UserProto );
+    rpc Delete(UserRowIdFilter) returns(Empty);
+}
+message Empty {}
+message UserProto {
+    int32 Id = 1;
+    string Name = 2; 
+    string Phone = 3;
+    string Email = 4;
+    string Address = 5;
+    google.protobuf.Timestamp CreateDate = 6;
+    bool Delete= 7;
+
+}
+message UserRowIdFilter {
+    int32 userRowId = 1;
+}
+message UserProtos {
+    repeated UserProto items = 1;
+}
