@@ -42,16 +42,18 @@ namespace GrpcService.Protos {
       return parser.ParseFrom(context.PayloadAsNewBuffer());
     }
 
-    static readonly grpc::Marshaller<global::GrpcService.Protos.Empty> __Marshaller_users_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.Protos.Empty.Parser));
+    static readonly grpc::Marshaller<global::GrpcService.Protos.EmptyProto> __Marshaller_users_EmptyProto = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.Protos.EmptyProto.Parser));
     static readonly grpc::Marshaller<global::GrpcService.Protos.UserProtos> __Marshaller_users_UserProtos = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.Protos.UserProtos.Parser));
     static readonly grpc::Marshaller<global::GrpcService.Protos.UserRowIdFilter> __Marshaller_users_UserRowIdFilter = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.Protos.UserRowIdFilter.Parser));
     static readonly grpc::Marshaller<global::GrpcService.Protos.UserProto> __Marshaller_users_UserProto = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.Protos.UserProto.Parser));
+    static readonly grpc::Marshaller<global::GrpcService.Protos.PagingUserRequest> __Marshaller_users_PagingUserRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.Protos.PagingUserRequest.Parser));
+    static readonly grpc::Marshaller<global::GrpcService.Protos.PagingUserResponse> __Marshaller_users_PagingUserResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.Protos.PagingUserResponse.Parser));
 
-    static readonly grpc::Method<global::GrpcService.Protos.Empty, global::GrpcService.Protos.UserProtos> __Method_GetAll = new grpc::Method<global::GrpcService.Protos.Empty, global::GrpcService.Protos.UserProtos>(
+    static readonly grpc::Method<global::GrpcService.Protos.EmptyProto, global::GrpcService.Protos.UserProtos> __Method_GetAll = new grpc::Method<global::GrpcService.Protos.EmptyProto, global::GrpcService.Protos.UserProtos>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetAll",
-        __Marshaller_users_Empty,
+        __Marshaller_users_EmptyProto,
         __Marshaller_users_UserProtos);
 
     static readonly grpc::Method<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.UserProto> __Method_GetById = new grpc::Method<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.UserProto>(
@@ -75,12 +77,19 @@ namespace GrpcService.Protos {
         __Marshaller_users_UserProto,
         __Marshaller_users_UserProto);
 
-    static readonly grpc::Method<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.Empty> __Method_Delete = new grpc::Method<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.Empty>(
+    static readonly grpc::Method<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.EmptyProto> __Method_Delete = new grpc::Method<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.EmptyProto>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Delete",
         __Marshaller_users_UserRowIdFilter,
-        __Marshaller_users_Empty);
+        __Marshaller_users_EmptyProto);
+
+    static readonly grpc::Method<global::GrpcService.Protos.PagingUserRequest, global::GrpcService.Protos.PagingUserResponse> __Method_GetPaging = new grpc::Method<global::GrpcService.Protos.PagingUserRequest, global::GrpcService.Protos.PagingUserResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetPaging",
+        __Marshaller_users_PagingUserRequest,
+        __Marshaller_users_PagingUserResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -92,7 +101,7 @@ namespace GrpcService.Protos {
     [grpc::BindServiceMethod(typeof(UserService), "BindService")]
     public abstract partial class UserServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::GrpcService.Protos.UserProtos> GetAll(global::GrpcService.Protos.Empty request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::GrpcService.Protos.UserProtos> GetAll(global::GrpcService.Protos.EmptyProto request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -112,7 +121,12 @@ namespace GrpcService.Protos {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::GrpcService.Protos.Empty> Delete(global::GrpcService.Protos.UserRowIdFilter request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::GrpcService.Protos.EmptyProto> Delete(global::GrpcService.Protos.UserRowIdFilter request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::GrpcService.Protos.PagingUserResponse> GetPaging(global::GrpcService.Protos.PagingUserRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -128,7 +142,8 @@ namespace GrpcService.Protos {
           .AddMethod(__Method_GetById, serviceImpl.GetById)
           .AddMethod(__Method_Post, serviceImpl.Post)
           .AddMethod(__Method_Put, serviceImpl.Put)
-          .AddMethod(__Method_Delete, serviceImpl.Delete).Build();
+          .AddMethod(__Method_Delete, serviceImpl.Delete)
+          .AddMethod(__Method_GetPaging, serviceImpl.GetPaging).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -137,11 +152,12 @@ namespace GrpcService.Protos {
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static void BindService(grpc::ServiceBinderBase serviceBinder, UserServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_GetAll, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.Empty, global::GrpcService.Protos.UserProtos>(serviceImpl.GetAll));
+      serviceBinder.AddMethod(__Method_GetAll, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.EmptyProto, global::GrpcService.Protos.UserProtos>(serviceImpl.GetAll));
       serviceBinder.AddMethod(__Method_GetById, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.UserProto>(serviceImpl.GetById));
       serviceBinder.AddMethod(__Method_Post, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.UserProto, global::GrpcService.Protos.UserProto>(serviceImpl.Post));
       serviceBinder.AddMethod(__Method_Put, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.UserProto, global::GrpcService.Protos.UserProto>(serviceImpl.Put));
-      serviceBinder.AddMethod(__Method_Delete, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.Empty>(serviceImpl.Delete));
+      serviceBinder.AddMethod(__Method_Delete, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.UserRowIdFilter, global::GrpcService.Protos.EmptyProto>(serviceImpl.Delete));
+      serviceBinder.AddMethod(__Method_GetPaging, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::GrpcService.Protos.PagingUserRequest, global::GrpcService.Protos.PagingUserResponse>(serviceImpl.GetPaging));
     }
 
   }

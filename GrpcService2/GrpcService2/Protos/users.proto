@@ -3,13 +3,14 @@ import "google/protobuf/timestamp.proto";
 option csharp_namespace = "GrpcService.Protos";
 package users;
 service UserService {
-    rpc GetAll(Empty) returns(UserProtos);
+    rpc GetAll(EmptyProto) returns(UserProtos);
     rpc GetById(UserRowIdFilter) returns(UserProto );
     rpc Post(UserProto ) returns(UserProto );
     rpc Put(UserProto ) returns(UserProto );
-    rpc Delete(UserRowIdFilter) returns(Empty);
+    rpc Delete(UserRowIdFilter) returns(EmptyProto);
+    rpc GetPaging(PagingUserRequest ) returns(PagingUserResponse);
 }
-message Empty {}
+message EmptyProto {}
 message UserProto {
     int32 Id = 1;
     string Name = 2; 
@@ -25,4 +26,15 @@ message UserRowIdFilter {
 }
 message UserProtos {
     repeated UserProto items = 1;
+}
+
+message PagingUserResponse{
+    int32 pageIndex =1;
+    int32 pageSize = 2;
+    int64 count = 3;
+    repeated UserProto data = 4;
+}
+message PagingUserRequest{
+    int32 pageIndex =1;
+    int32 pageSize = 2;
 }
