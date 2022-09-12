@@ -34,6 +34,7 @@ namespace GrpcService2Services
                     Name = u.Name,
                     Phone = u.Phone
                 });
+
             response.Data.AddRange(pagingUser.ToArray());
             response.Count = count;
             response.PageIndex = request.PageIndex;
